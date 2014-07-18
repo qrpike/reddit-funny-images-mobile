@@ -53,49 +53,20 @@ $(function(){
 		el: '#container',
 		template: _.template( $('#mainView').html() ),
 		initialize: function( posts ){
-			_.bindAll(this, 'render', 'addPost', 'getCol', 'checkIfMobile');
-			this.mobile = this.checkIfMobile();
+			_.bindAll(this, 'render', 'addPost');
 			this.posts = posts;
 			this.render();
 			this.posts.on('add', this.addPost);
-			console.log('Mobile:', this.mobile);
-		},
-		checkIfMobile: function(){
-			return ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) );
 		},
 		addPost: function( post ){
 			if(post.isImage()){
 				var self = this;
 				var view = new PostView( post );
 				var cb = function(){
-					self.getCol().append( view.render().el );
-				}
-				if(self.mobile){
-					cb = function(){
-						self.$el.find('#col1').append( view.render().el );
-					}	
-				}
+					self.$el.find('#postContainer').append( view.render().el );
+				};
 				view.buildImage(cb);
 			}
-		},
-		getCol: function(){
-			var x = 1;
-			var chosen = undefined;
-			var chosenHeight = 0;
-			while(x<7){
-				var col = this.$el.find('#col'+x);
-				var height = col.height();
-				if( height < chosenHeight ){
-					chosen = col;
-					chosenHeight = height;
-				}
-				if( chosen == undefined ){
-					chosen = col;
-					chosenHeight = height;
-				}
-				x++;
-			}
-			return chosen;
 		},
 		render: function(){
 			this.$el.html( this.template( this ) );
@@ -119,7 +90,7 @@ $(function(){
 			this.$el.html( this.template( this ) );
 			return this;
 		}
-	})
+	});
 
 
 	var p = new Posts();
