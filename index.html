@@ -1,0 +1,39 @@
+<html><head>
+
+	<title>Funny Images</title>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://underscorejs.org/underscore-min.js"></script>
+	<script src="http://backbonejs.org/backbone-min.js"></script>
+	<script src="js/main.js"></script>
+
+</head><body>
+	
+	<div id="container"></div>
+
+	<script type="text/template" id="postView">
+		<div class="post">
+			<a href="<%-attributes.data.url%>" target="_blank">
+				<img src="<%-attributes.data.url%>" class="postImage" title="<%-attributes.data.title%>">
+			</a>
+		</div>
+	</script>
+
+	<script type="text/template" id="mainView">
+		<div id="posts">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-2 col-sm-12" id="col1"></div>
+					<div class="col-lg-2" id="col2"></div>
+					<div class="col-lg-2" id="col3"></div>
+					<div class="col-lg-2" id="col4"></div>
+					<div class="col-lg-2" id="col5"></div>
+					<div class="col-lg-2" id="col6"></div>
+				</div>
+			</div>
+		</div>
+	</script>
+
+</body></html>
