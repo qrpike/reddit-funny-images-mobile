@@ -41,7 +41,7 @@ $(function(){
 			_.bindAll(this, 'continueFetching', 'parse', 'url');
 			this.page = 0;
 			this.after = '';
-			this.toFetch = 10;
+			this.toFetch = 2;
 			this.pagesFetched = 0;
 			this.fetch({
 				success: this.continueFetching
@@ -53,17 +53,35 @@ $(function(){
 		el: '#container',
 		template: _.template( $('#mainView').html() ),
 		initialize: function( posts ){
-			_.bindAll(this, 'render', 'addPost');
+			_.bindAll(this, 'render', 'addPost', 'addLoadListener');
 			this.posts = posts;
 			this.render();
 			this.posts.on('add', this.addPost);
+			this.addLoadListener();
 		},
 		addPost: function( post ){
 			if(post.isImage()){
-				var self = this;
 				var view = new PostView( post );
-				self.$el.find('#postContainer').append( view.render().el );
+				this.$el.find('#postContainer').append( view.render().el );
 			}
+		},
+		addLoadListener: function(){
+			var self = this;
+			var canFetch = true;
+			console.log('listening for bottom');
+			$(window).scroll(function() {
+				if($(window).scrollTop() >= $(document).height() - $(window).height()) {
+					if(canFetch){
+						canFetch = false;
+						console.log('Loading More');
+						self.posts.fetch({
+							success: function(){
+								canFetch = true;
+							}
+						});
+					}
+				}
+			});
 		},
 		render: function(){
 			this.$el.html( this.template( this ) );
