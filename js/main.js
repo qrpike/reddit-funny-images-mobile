@@ -62,10 +62,7 @@ $(function(){
 			if(post.isImage()){
 				var self = this;
 				var view = new PostView( post );
-				var cb = function(){
-					self.$el.find('#postContainer').append( view.render().el );
-				};
-				view.buildImage(cb);
+				self.$el.find('#postContainer').append( view.render().el );
 			}
 		},
 		render: function(){
@@ -78,13 +75,7 @@ $(function(){
 		template: _.template( $('#postView').html() ),
 		model: Post,
 		initialize: function(){
-			_.bindAll(this, 'render', 'buildImage');
-			this.img = null;
-		},
-		buildImage: function( callback ){
-			this.img = document.createElement('img');
-			this.img.onload = callback;
-			this.img.src = this.attributes.data.url;
+			_.bindAll(this, 'render');
 		},
 		render: function(){
 			this.$el.html( this.template( this ) );
