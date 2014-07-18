@@ -70,7 +70,7 @@ $(function(){
 			var canFetch = true;
 			console.log('listening for bottom');
 			$(window).scroll(function() {
-				if($(window).scrollTop() >= $(document).height() - $(window).height()) {
+				if($(window).scrollTop() >= ($(document).height() - $(window).height() - 250)) {
 					if(canFetch){
 						canFetch = false;
 						console.log('Loading More');
