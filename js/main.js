@@ -14,6 +14,16 @@ $(function(){
 			if(this.attributes.data.url.indexOf('gif') != -1)
 				return true;
 			return false;
+		},
+		isGifv: function(){
+			if(this.attributes.data.url.indexOf('gifv') != -1)
+				return true;
+			return false;
+		},
+		gifvID: function(){
+			var sp = this.attributes.data.url.split('.gifv');
+			var sp2 = sp[0].split('/');
+			return sp2[ sp2.length - 1 ];
 		}
 	});
 
@@ -92,11 +102,12 @@ $(function(){
 	var PostView = Backbone.View.extend({
 		template: _.template( $('#postView').html() ),
 		model: Post,
-		initialize: function(){
+		initialize: function( model ){
+			this.model = model;
 			_.bindAll(this, 'render');
 		},
 		render: function(){
-			this.$el.html( this.template( this ) );
+			this.$el.html( this.template( this.model ) );
 			return this;
 		}
 	});
