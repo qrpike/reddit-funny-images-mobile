@@ -22,6 +22,10 @@ h1 {
 	max-width: 100%;
 }
 
+.post video {
+	max-width: 100%;
+}
+
 .post h3 {
 	padding: 10px;
 	text-align: left;
