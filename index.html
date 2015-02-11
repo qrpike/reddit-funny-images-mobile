@@ -22,15 +22,7 @@
 		<div class="post">
 			<h3><%-attributes.data.title%></h3>
 			<a href="<%-attributes.data.url%>" target="_blank">
-				<% if(isGifv()){ %>
-					<video poster="//i.imgur.com/<%=gifvID()%>.jpg" controls="true" webkit-playsinline>
-						<source src="//i.imgur.com/<%=gifvID()%>.webm" type="video/webm">
-                		<source src="//i.imgur.com/<%=gifvID()%>.mp4" type="video/mp4">
-					</video>
-				<% }else{ %>
-					<img src="<%-attributes.data.url%>" class="postImage" title="<%-attributes.data.title%>">
-				<% } %>
-				
+				<img src="<%-attributes.data.url%>" class="postImage" title="<%-attributes.data.title%>">
 			</a>
 		</div>
 	</script>

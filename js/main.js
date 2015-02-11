@@ -5,6 +5,8 @@ $(function(){
 			_.bindAll(this, 'isImage');
 		},
 		isImage: function(){
+			if(this.attributes.data.url.indexOf('gifv') != -1)
+				return false;
 			if(this.attributes.data.url.indexOf('jpg') != -1)
 				return true;
 			if(this.attributes.data.url.indexOf('png') != -1)
@@ -14,16 +16,6 @@ $(function(){
 			if(this.attributes.data.url.indexOf('gif') != -1)
 				return true;
 			return false;
-		},
-		isGifv: function(){
-			if(this.attributes.data.url.indexOf('gifv') != -1)
-				return true;
-			return false;
-		},
-		gifvID: function(){
-			var sp = this.attributes.data.url.split('.gifv');
-			var sp2 = sp[0].split('/');
-			return sp2[ sp2.length - 1 ];
 		}
 	});
 
