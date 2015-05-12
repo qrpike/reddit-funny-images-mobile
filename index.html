@@ -20,10 +20,8 @@
 
 	<script type="text/template" id="postView">
 		<div class="post">
-			<h3><%-attributes.data.title%></h3>
-			<a href="<%-attributes.data.url%>" target="_blank">
-				<img src="<%-attributes.data.url%>" class="postImage" title="<%-attributes.data.title%>">
-			</a>
+			<a href="http://reddit.com/<%-attributes.data.permalink%>" target="_blank"><h3><%-attributes.data.title%></h3></a>
+			<img src="<%-attributes.data.url%>" class="postImage" title="<%-attributes.data.title%>">
 		</div>
 	</script>
 
